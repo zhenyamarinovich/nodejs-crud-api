@@ -69,7 +69,7 @@ export const multiServer = (port: string | number): void => {
 
   if (cluster.isPrimary) {
 
-    console.log(`Master pid: ${pid}`);
+    console.log(`Main pid: ${pid}`);
     console.log(`Count forks: ${COUNT_WORKERS}`);
     for (let i = 0; i < COUNT_WORKERS; i++) cluster.fork();
   } else {
