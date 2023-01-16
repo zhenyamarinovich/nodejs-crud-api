@@ -1,0 +1,52 @@
+{
+  "name": "nodejs-crud-api",
+  "version": "1.0.0",
+  "description": "nodejs-crud-api",
+  "main": "index.ts",
+  "scripts": {
+    "start:dev": "nodemon",
+    "start:prod": "npm run build && node dist/index.js",
+    "build": "npx tsc",
+    "start:multi": "cross-env MODE=multi npm run start:dev",
+    "lint": "npx eslint ./src",
+    "format": "npx eslint ./src --fix",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhenyamarinovich/nodejs-crud-api.git"
+  },
+  "author": "zhenyamarinovich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhenyamarinovich/nodejs-crud-api/issues"
+  },
+  "homepage": "https://github.com/zhenyamarinovich/nodejs-crud-api#readme",
+  "devDependencies": {
+    "@types/jest": "^29.2.5",
+    "@types/node": "^18.11.18",
+    "@types/supertest": "^2.0.12",
+    "@types/uuid": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.32.0",
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "uuid": "^9.0.0"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "exec": "ts-node src/index.ts"
+  }
+}
