@@ -8,7 +8,7 @@ export const enum STATUS_CODE {
   }
   
   export const enum ERRORS {
-    NOT_FOUND_USER = "User with current id doesn't exist",
+    NOT_FOUND_USER = "User with current id is not exist",
     NOT_FOUND_ENDPOINT = 'Endpoint does not exist',
     INVALID_ID = "Invalid user ID (not uuid)",
     unsupportedMethod = 'This is a request method the server does not support',
