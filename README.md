@@ -13,10 +13,10 @@
 - npm run test
 
 ## Endpoints:
--GET api/users,
--GET api/users/{userId},
--POST api/users,
--PUT api/users/{userId},
--DELETE api/users/{userId};
+-GET api/users
+-GET api/users/{userId}
+-POST api/users
+-PUT api/users/{userId}
+-DELETE api/users/{userId}
 
 ##see more https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/crud-api/assignment.md
