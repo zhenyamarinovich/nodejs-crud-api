@@ -1,15 +1,20 @@
 import * as http from "http";
+import cluster from 'cluster';
+import * as dotenv from 'dotenv';
 
-import { getAllUsers, getUser, createUser, updateUser, deleteUser } from "./controller.js";
+import { getAllUsers, getUser, createUser, updateUser, deleteUser } from "./controller";
 
-import { parseUrl } from "./duck/helpers.js";
-import { STATUS_CODE, ERRORS, CONTENT_TYPE } from "./duck/constants.js";
+import { parseUrl } from "./duck/helpers";
+import { STATUS_CODE, ERRORS, CONTENT_TYPE } from "./duck/constants";
+
+dotenv.config();
 
 
 const PORT = process.env.PORT || 4000;
+const MODE = process.env.MODE;
 
 
-const server = http.createServer((req ,res)=> {
+export const server =  http.createServer((req ,res)=> {
 
   const {api, endpoint, id} = parseUrl(req);
 
@@ -56,7 +61,35 @@ const server = http.createServer((req ,res)=> {
   }
 });
 
-server.listen(PORT, ()=>{
+
+
+export const multiServer = (port: string | number): void => {
+  const COUNT_WORKERS = 4;
+  const pid = process.pid;
+
+  if (cluster.isPrimary) {
+
+    console.log(`Master pid: ${pid}`);
+    console.log(`Count forks: ${COUNT_WORKERS}`);
+    for (let i = 0; i < COUNT_WORKERS; i++) cluster.fork();
+  } else {
+    const id = cluster.worker?.id || 0;
+    const currentPort = Number(port) + id - 1;
+    console.log(`Worker id: ${id} pid: ${pid} port: ${currentPort}`);
+
+    server.listen(currentPort, ()=>{
+      console.log(`Server start on ${currentPort} PORT`
+      )
+  });
+ }
+};
+
+
+if(MODE !== "multi") {
+  server.listen(PORT, ()=>{
     console.log(`Server start on ${PORT} PORT`
     )
 })
+} else {
+  multiServer(PORT);
+}

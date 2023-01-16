@@ -1,6 +1,6 @@
 import { v4 } from 'uuid';
 
-import { IUser } from "./usersInterface.js";
+import { IUser } from "./usersInterface";
 
 
 const users: IUser[] = [];

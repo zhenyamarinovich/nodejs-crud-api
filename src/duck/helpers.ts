@@ -1,8 +1,8 @@
 import { validate } from 'uuid';
 import { IncomingMessage, ServerResponse } from 'http';
 
-import { IUser } from '../usersInterface.js';
-import { CONTENT_TYPE, ERRORS, STATUS_CODE } from './constants.js';
+import { IUser } from '../usersInterface';
+import { CONTENT_TYPE, ERRORS, STATUS_CODE } from './constants';
 
 export const isValidId = (id: string) => validate(id);
 
