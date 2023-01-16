@@ -1,0 +1,21 @@
+{
+  "name": "nodejs-crud-api",
+  "version": "1.0.0",
+  "description": "nodejs-crud-api",
+   "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhenyamarinovich/nodejs-crud-api.git"
+  },
+  "author": "zhenyamarinovich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhenyamarinovich/nodejs-crud-api/issues"
+  },
+  "homepage": "https://github.com/zhenyamarinovich/nodejs-crud-api#readme"
+}
