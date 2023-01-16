@@ -14,8 +14,9 @@ export const parseUrl = (req: IncomingMessage) => {
   const param = req.url.split("/").filter(Boolean);
 
   return {
-    endpoint: param[0],
-    id: param[1],
+    api: param[0],
+    endpoint: param[1],
+    id: param[2],
   };
 };
 

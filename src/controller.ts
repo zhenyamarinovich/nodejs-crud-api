@@ -66,6 +66,7 @@ export  const createUser = async (req: IncomingMessage, res: ServerResponse) => 
 
     if (isValidData(res, content)) {
       const user = users.add(content);
+      console.log(user)
       res.writeHead(STATUS_CODE.CREATED, CONTENT_TYPE);
       res.end(JSON.stringify(user));
     }
@@ -118,6 +119,33 @@ export const updateUser = async (req: IncomingMessage, res: ServerResponse, id: 
         message: ERRORS.SERVER_ERROR,
       })
     );
+  }
+}
+
+export const deleteUser = (res: ServerResponse, id: string) => {
+  if(!isValidId(id)){
+    res.writeHead(STATUS_CODE.BAD_REQUEST, CONTENT_TYPE);
+    res.end(
+      JSON.stringify({
+        code: STATUS_CODE.BAD_REQUEST,
+        message: ERRORS.INVALID_ID,
+      })
+    );
+  } else {
+    const user = users.getById(id);
+      if (user.length) {
+        const user = users.remove(id);
+        res.writeHead(STATUS_CODE.DELETED, CONTENT_TYPE);
+        res.end(JSON.stringify(user));
+      } else {
+        res.writeHead(STATUS_CODE.NOT_FOUND, CONTENT_TYPE);
+        res.end(
+          JSON.stringify({
+            code: STATUS_CODE.NOT_FOUND,
+            message: ERRORS.NOT_FOUND_USER,
+          })
+        );
+      }
   }
 }
 

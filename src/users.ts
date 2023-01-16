@@ -24,4 +24,10 @@ export const update = (id: string, content: IUser) => {
     const index = users.findIndex(user => user.id === id);
     users[index] = { id, ...content };
     return users[index];
-  }
+}
+
+export const remove = (id: string) => {
+    const index = users.findIndex(user => user.id === id);
+    const [user] = users.splice(index, 1);
+    return user;
+}
